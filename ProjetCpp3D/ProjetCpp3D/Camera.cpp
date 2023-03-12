@@ -63,16 +63,19 @@ void Camera::moveCamera(GLFWwindow* window)
 		horizontalAngle -= rotationSpeed * deltaTime;
 
 
-
+	// Permet la détection du jump et le jump en lui même.
+	// Ici ma variable CanJump détecte s'il a la possibilité d'activer le jump, donc si le joueur a les conditions requises pour jump
 	else if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && CanJump == true) {
 		IsJumping = true;                                                          
 		m_position += m_up * deltaTime * speed;
 		JumpTime += deltaTime;
 		std::cout << JumpTime << "\n";
-		if (JumpTime > 2.0f) {
+		if (JumpTime > 2.0f) { // Ici j'ai set 2.0s en temps maximal pour rester appuyé sur la touche pour sauter
 			CanJump = false;
 		}
 	}
+
+	// Cette fonction permet d'empêcher la réactivation du jump lorsque le joueur a relaché la touche
 	else if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE && IsJumping == true) {
 		CanJump = false;
 		m_position -= m_up * deltaTime * speed;
@@ -82,6 +85,8 @@ void Camera::moveCamera(GLFWwindow* window)
 			CanJump = true;
 		}
 	}
+
+	// Permet la "gravité", donc de faire redescendre le joueur à la hauteur y = 0 
 	else if (CanJump == false && IsJumping == true) {
 		m_position -= m_up * deltaTime * speed;
 		if (m_position.y <= 0) {
@@ -111,10 +116,3 @@ void Camera::moveCamera(GLFWwindow* window)
 }
 
 glm::vec3 Camera::getPosition() { return m_position; }
-
-/*
-De quoi j'ai besoin si je veux faire un jump ?
-
-Pour faire mon jump, je vais faire un set d'une variable booléenne lors de l'appui sur ma touche pour sauter
-Puis, je vais augmenter une variable de temps pour limiter la hauteur maximale du jump
-*/

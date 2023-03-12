@@ -213,6 +213,10 @@ int main() {
 	0.667979f, 1.0f - 0.335851f
 	};
 
+
+
+	// Déclaration de mes meshes
+
 	Mesh* mesh = new Mesh(glm::vec3(0, 0, 0), programID);
 	mesh->createMesh(programID, projection, view, "cube.obj", g_color_buffer_data_cube, sizeof(g_color_buffer_data_cube));
 	meshes.push_back(mesh);
@@ -222,6 +226,14 @@ int main() {
 	meshes.push_back(mesh2);
 
 	Mesh* mesh3 = new Mesh(glm::vec3(-3, 0, -3), programID);
+	mesh3->createMesh(programID, projection, view, "cube.obj", g_color_buffer_data_cube, sizeof(g_color_buffer_data_cube));
+	meshes.push_back(mesh3);
+
+	Mesh* mesh4 = new Mesh(glm::vec3(3, 0, -3), programID);
+	mesh3->createMesh(programID, projection, view, "cube.obj", g_color_buffer_data_cube, sizeof(g_color_buffer_data_cube));
+	meshes.push_back(mesh3);
+
+	Mesh* mesh5 = new Mesh(glm::vec3(-3, 0, 3), programID);
 	mesh3->createMesh(programID, projection, view, "cube.obj", g_color_buffer_data_cube, sizeof(g_color_buffer_data_cube));
 	meshes.push_back(mesh3);
 
